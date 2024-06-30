@@ -1,0 +1,13 @@
+<launch>
+    <!-- Launch the point cloud publisher -->
+    <node pkg="point_cloud_publisher" type="point_cloud_publisher.py" name="point_cloud_publisher" output="screen" />
+
+    <!-- Launch octomap_server -->
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+        <param name="resolution" value="0.05" />
+        <param name="frame_id" value="base_link" />
+        <param name="sensor_model.max_range" value="5.0" />
+        <remap from="cloud_in" to="/input_point_cloud" />
+    </node>
+</launch>
+
